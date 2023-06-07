@@ -22,6 +22,7 @@ const boardPresenter = new BoardPresenter({
   modelOffers,
   modelDestinations
 });
+
 render(new Filters(), siteHeaderElement);
 
 boardPresenter.init();
