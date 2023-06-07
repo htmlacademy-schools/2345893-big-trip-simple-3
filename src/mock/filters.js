@@ -1,15 +1,16 @@
-import {isTripDateBeforeToday} from '../utils/date';
+import { FilterType } from './const';
+import { isTripDateBeforeToday } from '../util';
 
-const FilterType = {
-  EVERYTHING: 'everything',
-  FUTURE: 'future'
-};
 
 const filter = {
-  [FilterType.FUTURE]: (tripPoints) => tripPoints.filter((tripPoint) => isTripDateBeforeToday(tripPoint.dateFrom)),
-  [FilterType.EVERYTHING]: (tripPoints) => tripPoints,
+  [FilterType.FUTURE]: (waypoints) => waypoints.filter((waypoint) => isTripDateBeforeToday(waypoint.dateFrom)),
+  [FilterType.EVERYTHING]: (waypoints) => waypoints,
 };
 
 
-export const generateFilter = () =>
-  Object.keys(filter);
+function generateFilter() {
+  return Object.keys(filter).map((filterName) => filterName );
+}
+
+
+export {generateFilter};
