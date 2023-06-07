@@ -1,20 +1,27 @@
-import TripPresenter from './presenter/trip-presenter.js';
-import { render } from './render.js';
-import FiltersView from './view/filter-view.js';
-import TripPointModel from './model/trip-point-model';
-import {generateFilter} from './mock/filters';
+import Filters from './view/filters.js';
+import BoardPresenter from './presenter/board-presenter';
+import ModelWaypoint from './model/model-waypoint';
+import {mockInit, waypoints} from './mock/point';
+import {render} from './framework/render';
+import ModelOffers from './model/offers-model';
+import ModelDestinations from './model/destinations-model';
+import {offersByType} from './mock/const';
+import {destinations} from './mock/destination';
 
-const tripControlsFiltersBlock = document.querySelector('.trip-controls__filters');
-const tripEventsSection = document.querySelector('.trip-events');
+const siteHeaderElement = document.querySelector('.trip-controls__filters');
+const container = document.querySelector('.trip-events');
 
-const tripPointsModel = new TripPointModel();
-const tripPresenter = new TripPresenter(tripEventsSection, tripPointsModel);
+mockInit(3, 10);
+const modelWaypoints = new ModelWaypoint(waypoints);
+const modelOffers = new ModelOffers(offersByType);
+const modelDestinations = new ModelDestinations(destinations);
 
+const boardPresenter = new BoardPresenter({
+  boardContainer: container,
+  waypointsModel: modelWaypoints,
+  modelOffers,
+  modelDestinations
+});
+render(new Filters(), siteHeaderElement);
 
-const filters = generateFilter(tripPointsModel.tripPoints);
-
-
-render(new FiltersView({filters}), tripControlsFiltersBlock);
-
-
-tripPresenter.init();
+boardPresenter.init();

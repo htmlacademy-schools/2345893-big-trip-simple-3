@@ -1,12 +1,15 @@
-import {SortType} from '../utils/const';
+import dayjs from 'dayjs';
+import {SortType} from './const';
 
+const offOptions = ['event', 'offer'];
+const isSelectedOption = (sortType) => (offOptions.includes(sortType) ? 'disabled' : '');
 
 const sorts = {
-  [SortType.DAY]: () => (0),
-  [SortType.EVENT]: () => (0),
-  [SortType.TIME]: () => (0),
-  [SortType.PRICE]: () => (0),
-  [SortType.OFFERS]: () => (0),
+  [SortType.DAY]: undefined,
+  [SortType.EVENT]: undefined,
+  [SortType.OFFER]: undefined,
+  [SortType.PRICE]: (point1, point2) => point2.basePrice - point1.basePrice,
+  [SortType.TIME]: (point1, point2) => dayjs(point1.dateFrom).diff(dayjs(point2.dateFrom)),
 };
 
-export const generateSorts = () => Object.keys(sorts);
+export {isSelectedOption, sorts};

@@ -1,32 +1,35 @@
-import {generateWords} from '../utils/lorem-ipsum';
-import {generateRandomInt, getRandomImageUrl} from '../utils/random';
+import {getRandomItemFromItems, createIDgenerator} from '../util';
+import {descrText, cities} from './const';
 
-const names = ['Chamonix', 'Berlin', 'Moscow', 'Tver', 'NY'];
+const destinations = [];
 
-
-const generatePicture = () => ({
-  src: getRandomImageUrl(),
-  description: generateWords(generateRandomInt(5, 10))
-});
-
-export const generateDestination = (id) => ({
-  id,
-  description: generateWords(generateRandomInt(10, 20)),
-  name: names[generateRandomInt(0, names.length - 1)],
-  pictures:
-    Array.from({length: generateRandomInt(2, 10)}, generatePicture)
-});
-
-
-export const randomDesinations = (() => {
-  const destinations = [];
-
-  for (let i = 0; i <= 10; i++) {
-    destinations.push(generateDestination(i));
+const generatePictures = () => {
+  const pictures = [];
+  for (let i = 0; i < 6; i++) {
+    const picture = {
+      src: 'img/photos/1.jpg',
+      description: getRandomItemFromItems(descrText)
+    };
+    pictures.push(picture);
   }
+  return pictures;
+};
 
-  return {
-    getDestination: (id) => destinations[id],
-    getAllDestinations: () => destinations,
-  };
-})(); // Замыкания для хранения одинаковых точек, а не создания каждый раз новых.
+const generateDestinationId = createIDgenerator();
+
+const generateDestinations = (n) => {
+  for (let i = 0; i < n; i++) {
+    const destination = {
+      id: generateDestinationId(),
+      description: getRandomItemFromItems(descrText),
+      name: getRandomItemFromItems(cities),
+      pictures: generatePictures()
+    };
+    destinations.push(destination);
+  }
+};
+
+
+const getDestinationByID = (id) => destinations.find((item) => item.id === id);
+
+export {generateDestinations, destinations, getDestinationByID};

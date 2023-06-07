@@ -1,16 +1,31 @@
-import {generateRandomInt, getRandomDate} from '../utils/random';
+import {getRandomItemFromItems, getRandomPrice, createIDgenerator} from '../util.js';
+import {variousDates, pointTypes } from './const.js';
+import { destinations, generateDestinations } from './destination.js';
+import {getRandomOffersIdsByType} from './offers.js';
 
-const TRIP_TYPES = ['taxi', 'bus', 'train', 'ship', 'drive', 'flight', 'check-in', 'sightseeing', 'restaurant'];
+const waypoints = [];
 
-export const getRandomType = () => TRIP_TYPES[generateRandomInt(0, TRIP_TYPES.length - 1)];
+const generateWaypointId = createIDgenerator();
+const generateWaypoints = (n) => {
+  for (let i = 0; i < n; i++) {
+    const dates = getRandomItemFromItems(variousDates);
+    const type = getRandomItemFromItems(pointTypes);
+    const waypoint = {
+      basePrice: getRandomPrice(),
+      dateFrom: dates.dateFrom,
+      dateTo: dates.dateTo,
+      destination: getRandomItemFromItems(destinations).id,
+      id: generateWaypointId(),
+      offersIDs: getRandomOffersIdsByType(type),
+      type
+    };
+    waypoints.push(waypoint);
+  }
+};
 
+const mockInit = (numWaypoints, numDestinations) => {
+  generateDestinations(numDestinations);
+  generateWaypoints(numWaypoints);
+};
 
-export const generateTripPoint = () => ({
-  'base_price': generateRandomInt(1000, 2000),
-  'date_from': getRandomDate(),
-  'date_to': getRandomDate(),
-  'destination': generateRandomInt(0, 9),
-  'id': generateRandomInt(0, 100),
-  'offers': [1, 3, 5],
-  'type': getRandomType()
-});
+export {mockInit, waypoints};
