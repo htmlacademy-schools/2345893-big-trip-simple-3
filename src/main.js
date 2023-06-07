@@ -50,7 +50,6 @@ function handleNewTaskButtonClick() {
   newWaypointButtonComponent.element.disabled = true;
 }
 
-
 filterPresenter.init();
 boardPresenter.init();
 modelWaypoints.init()
