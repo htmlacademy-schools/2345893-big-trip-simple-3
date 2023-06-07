@@ -11,4 +11,5 @@ const tripPresenter = new TripPresenter(tripEventsSection, tripPointsModel);
 
 render(new FiltersView(), tripControlsFiltersBlock);
 
+
 tripPresenter.init();

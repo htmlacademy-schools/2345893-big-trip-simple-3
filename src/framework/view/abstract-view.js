@@ -60,9 +60,39 @@ export default class AbstractView {
       callback?.();
     }, SHAKE_ANIMATION_TIMEOUT);
   }
+  /**
+   * @param {string} selector
+   * @param {string} event
+   * @param {(event: Event) => void} callback
+   */
+
+  addEventListener(selector, event, callback) {
+    if (!this._callback[event]) {
+      this._callback[event] = {};
+    }
+
+    this._callback[event][selector] = callback;
+
+    this.element.querySelector(selector).addEventListener(event, this._callback[event][selector]);
+  }
+
+  /**
+   * @param {string} selector
+   * @param {string} event
+   */
+
+  removeEventListener(selector, event) {
+    if (!this._callback[event] && !this._callback[event][selector]) {
+      return;
+    }
+
+    this.element.querySelector(selector).removeEventListener(event, this._callback[event][selector]);
+
+    this._callback[event][selector] = null;
+  }
 }
 
 /**
- * Функция, которая будет вызвана методом shake после завершения анимации
+ * Функция,  которая   будет   вызвана методом shake после завершения анимации
  * @callback shakeCallback
  */
