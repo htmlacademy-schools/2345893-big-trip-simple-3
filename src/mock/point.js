@@ -1,4 +1,4 @@
-import {getRandomItemFromItems, getRandomPrice, createIDgenerator} from '../util.js';
+import {getRandomItemFromItems, getRandomPrice, createIDgenerator} from '../utils.js';
 import {variousDates, pointTypes } from './const.js';
 import { destinations, generateDestinations } from './destination.js';
 import {getRandomOffersIdsByType} from './offers.js';

@@ -1,4 +1,4 @@
-import {getRandomItemFromItems, createIDgenerator} from '../util';
+import {getRandomItemFromItems, createIDgenerator} from '../utils';
 import {descrText, cities} from './const';
 
 const destinations = [];
