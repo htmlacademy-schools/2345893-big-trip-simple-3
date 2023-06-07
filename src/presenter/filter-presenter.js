@@ -1,4 +1,4 @@
-import {FilterType, FilterTypeDescriptions, UpdateType} from '../mock/const';
+import {FilterType, FilterTypeDescriptions, UpdateType} from '../const';
 import Filters from '../view/filters';
 import {render} from '../render';
 import {remove, replace} from '../framework/render';
