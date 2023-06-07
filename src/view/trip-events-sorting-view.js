@@ -1,5 +1,4 @@
 import AbstractView from '../framework/view/abstract-view';
-import {makeLowercased} from '../utils/strings';
 
 const createTripSortingBlock = (sortName) => `<div class="trip-sort__item  trip-sort__item--${makeLowercased(sortName)}">
       <input id="sort-${makeLowercased(sortName)}" class="trip-sort__input  visually-hidden" type="radio" name="trip-sort" value="sort-${makeLowercased(sortName)}" checked>
@@ -14,12 +13,6 @@ const createTripEventsSortingTemplate = (sorts) => `
 `;
 
 class TripEventsSortingView extends AbstractView {
-  #sorts = [];
-  constructor({sorts}) {
-    super();
-    this.#sorts = sorts;
-  }
-
   get template() {
     return createTripEventsSortingTemplate(this.#sorts);
   }
