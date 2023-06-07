@@ -13,6 +13,7 @@ const tripPresenter = new TripPresenter(tripEventsSection, tripPointsModel);
 
 const filters = generateFilter(tripPointsModel.tripPoints);
 
+
 render(new FiltersView({filters}), tripControlsFiltersBlock);
 
 tripPresenter.init();
