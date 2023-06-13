@@ -15,6 +15,7 @@ const placeForButton = document.querySelector('.trip-main');
 const AUTHORIZATION = 'Basic sgkdajgskdgas7777';
 const END_POINT = 'https://18.ecmascript.pages.academy/big-trip';
 
+
 const waypointsApiService = new WaypointsApiService(END_POINT, AUTHORIZATION);
 
 const modelWaypoints = new ModelWaypoint({waypointsApiService});
