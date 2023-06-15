@@ -8,6 +8,7 @@ import {render} from './render';
 import NewWaypointButton from './view/new-waypoint-button';
 import WaypointsApiService from './waypoints-api-service';
 
+
 const siteHeaderElement = document.querySelector('.trip-controls__filters');
 const container = document.querySelector('.trip-events');
 const placeForButton = document.querySelector('.trip-main');
