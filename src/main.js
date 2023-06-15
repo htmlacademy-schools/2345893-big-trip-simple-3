@@ -13,8 +13,6 @@ const siteHeaderElement = document.querySelector('.trip-controls__filters');
 const container = document.querySelector('.trip-events');
 const placeForButton = document.querySelector('.trip-main');
 
-
-const AUTHORIZATION = 'Basic sgkdajgskdgas7777';
 const END_POINT = 'https://18.ecmascript.pages.academy/big-trip';
 
 
